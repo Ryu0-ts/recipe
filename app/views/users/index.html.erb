@@ -1,0 +1,52 @@
+<%# バナー表示 %>
+<section class= "hero is-success">
+ <div class="hero-body">
+  <div class= "container">
+   <h1 class= "title">
+    レシピグラマー一覧
+   </h1>
+  </div>
+ </div>
+</section>
+
+<section class= "section">
+  <div class= "container">
+    <div class= "columns is-multiline">
+      <% @users.each do |user| %>
+        <div class="column is-3">
+          <div class="card">
+
+            <%# ユーザー画像表示 %>
+            <div class="card-cotent">
+              <div class="card-image">
+                <figure class="imege">
+                  <%= link_to user_path(user)do %>
+                    <%= attachment_image_tag user, :profile_image, fallback: "no-image.png" %>
+                  <% end %>
+                </figure>
+              </div>
+            </div>
+
+            <%# ユーザー名と投稿数を表示 %>
+            <div class="card-content">
+            <%# ユーザー名表示 %>
+              <div class="media">
+                <div class="media-content">
+                  <div class="title"><%= link_to user.username, user_path(user) %></div>
+                </div>
+              </div>
+            <%# ユーザーの投稿数を表示　%>
+              <div class="content">
+                投稿数: <%= user.recipes.count %>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      <% end %>
+   </div>
+    <%# ページネーションを表示 %>
+    <%= paginate (@users) %>
+  </div>
+</section>

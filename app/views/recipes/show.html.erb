@@ -1,0 +1,102 @@
+<%# バナー表示 %>
+<section class="hero is-success">
+ <div class="hero-body">
+  <div class="container">
+   <h1 class="title">
+    レシピ詳細
+   </h1>
+  </div>
+ </div>
+</section>  
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+
+      <div class="column is-7">
+        <div class="card">
+          <%# 料理画像表示 %>
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <%= attachment_image_tag @recipe, :image %>
+            </figure>
+          </div>
+
+          <div class="card-content">
+            <%# 料理名表示 %>
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-4"><%= @recipe.title %></p>
+              </div>
+            </div>
+
+            <div class="content">
+
+              <table class="table is-narrow">
+                <tr>
+                  <th>レシピ</th>
+                </tr>
+                <%# レシピ詳細表示 %>
+                <tr>
+                 <td><%= simple_format @recipe.body %></td>
+                </tr>
+              </table>
+                <%# 投稿したユーザーがログインているユーザーと同じなら編集ボタンを表示 %>
+              <%if user_signed_in? %>
+                <% if @recipe.user.id == current_user.id %>
+                  <%= link_to "編集",edit_recipe_path(@recipe),class: "button is-success" %>
+                <% end %>
+              <% end %>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="column is-4">
+        <article class="panel is-link">
+          <%# 投稿ユーザー名を表示 %>
+          <p class="panel-heading">
+            <%= @recipe.user.username %>
+           </p>
+          <%#　投稿ユーザーのプロフィールを表示 %>
+          <div class="panel-block">
+            <p class="control">
+              <%= @recipe.user.profile %>
+            </p>
+          </div>
+          <%# 投稿ユーザー名+さんのページへを表示 %>
+          <%= link_to user_path(@recipe.user),class: "panel-block" do %>
+            <span class="panel-icon">
+              <i class="fas fa-user" aria-hidden="true"></i>
+            </span>
+            <%= @recipe.user.username %>さんのページへ
+          <% end %>
+        </article>
+
+        <%# 投稿した材料を表示　s%>
+        <div class="content">
+          <table class="table is-narrow">
+            <tr>
+              <th>材料</th>
+            </tr>
+            <tr>
+              <td>
+                <%= simple_format @recipe.material %>
+              </td>
+            </tr>
+          </table>   
+        </div>
+    
+      </div>
+
+    </div>    
+  </div>
+</section>
+
+
+
+

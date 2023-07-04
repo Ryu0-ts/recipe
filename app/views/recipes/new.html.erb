@@ -1,0 +1,68 @@
+<%# バナー表示 %>
+<section class = "hero is-success">
+ <div class = "hero-body">
+  <div class= "container">
+   <h1 class = "title">
+    新規レシピ作成
+    </h1>
+   </div>
+  </div>
+</section>
+
+<%# 保存失敗時のエラー表示%>
+<% if @recipe.errors.any? %>
+  <div class ="notification is-danger">
+    <h2> <%= pluralize(@recipe.errors.count,"error") %> prohibited this object from being saved: not successfully </h2>
+    <ul> 
+      <% @recipe.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<section class= "section">
+  <div class= "container">
+    <div class= "columns is-centered">
+      <div class= "columns is-6">
+
+        <%# フォーム画面表示 %>
+        <%= form_for @recipe do |f| %>
+
+          <%# レシピ名入力フィールド表示 %>
+          <div class= "field">
+            <%= f.label :title, "レシピ名" , class: "label" %>
+            <%= f.text_field :title ,class: "input" %>
+          </div>
+
+          <%# 材料入力フィールド表示 %>
+          <div class="field">
+            <%= f.label :material, "材料", class: "label" %>
+            <%= f.text_area :material, class: "textarea" %>
+          </div>
+
+          <%# 作り方入力フィールド表示 %>
+          <div class= "field">
+            <%= f.label :body, "作り方" , class: "label" %>
+            <%= f.text_area :body, class: "textarea" %>
+          </div>
+
+          <%# 画像入力フィールド表示 %>
+          <div class= "field">
+            <%= f.label :image, "写真" , class: "label" %>
+            <%= f.file_field :image ,class: "input" %>
+          </div>
+
+          <%# 投稿ボタン表示 %>
+          <%= f.submit "投稿" , class: "button is-success" %>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  

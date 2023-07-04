@@ -1,0 +1,170 @@
+<%# バナー表示 %>
+<section class="hero is-success">
+ <div class="hero-body">
+  <div class="container">
+   <div class="title">
+    マイページ
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="columns is-centered">
+
+        <%# プロフィール画像表示 %>
+          <div class="column is-4">
+            <figure class="image is-128x128" style="margin-left: auto: margin-right: auto;">
+              <%= attachment_image_tag @user, :profile_image, fallback: "no-image.png",class: "profile_image is-rounded" %>
+            </figure>
+          </div>
+
+          <div class="column is-8">
+
+            <table class="table is-fullwifth">
+              <tr>
+                <%# ユーザー名表示 %>
+                <td class="is-size-4">
+                  <strong> <%= @user.username %> </strong>
+                </td>
+                <%# (curren_userのバグ回避用) %>
+                <% if user_signed_in? %>
+                  <%# サインインしているユーザーidがshow画面で表示しているユーザidと一致している場合 %>
+                  <% if @user.id == current_user.id %>
+                    <%# ユーザーのメールアドレスを表示 %>
+                    <td class="is-size-4">
+                      <%= @user.email %>
+                    </td>
+                    <%# 編集ボタンを表示 %>
+                    <td>
+                      <%= link_to "編集",edit_user_path(@user),class: "button is-primary"%>
+                    </td>
+                  <% end %>
+                <% end %>
+              </tr>
+            </table>
+
+            <%# ユーザーのプロフィールを表示%>
+            <table class="table is-fullwidth">
+              <tr>
+                <td>
+                  <%= @user.profile %>
+                </td>
+              </tr>
+            </table>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<section class = "section">
+  <div class = "container">
+    <div class = "columns is-multiline">
+      <% @user.recipes.each do |recipe| %>
+        <div class = "column is-4">
+          <div class = "card">
+
+            <div class = "card-image">
+              <figure class = "image is-4by3">
+                <%= attachment_image_tag recipe, :image %>
+              </figure>
+            </div>
+
+            <div class = "card-content">
+
+              <div class = "media" >
+                <%# show画面リンク表示 %>
+                <div class = "media-content">
+                  <%= link_to recipe_path(recipe), class: "panel-block" do %>
+                    <span class = "panel-icon">
+                      <i class = "fas fa-book" aria-hidden = "true"> </i>
+                    </span>
+                   このレシピを見る
+                  <% end %>
+
+                  <%#　ユーザーがサインインしている場合(current_userのバグ回避用) %>
+                  <% if user_signed_in? %>
+                    <%# show画面で表示しているユーザーIDが、サインインしているユーザーIDと同じ時 %>
+                    <% if @user.id == current_user.id %>
+                      <%# edit画面リンク表示 %>
+                        <%= link_to edit_recipe_path(recipe), class: "panel-block" do %>
+                          <span class = "panel-icon">
+                            <i class = "fas fa-edit" aria-hidden = "true"> </i>
+                          </span>
+                          このレシピを編集する
+                        <% end %>
+                    
+                        <%# レシピ削除リンク表示 %>
+                        <%= link_to recipe_path(recipe), data: {turbo_method: :delete, turbo_confirm: '削除しますか？'},class:"panel-block" do %>
+                          <span class = "panel-icon">
+                            <i class = "fas fa-trash" aria-hidden = "true"> </i>
+                          </span>
+                            このレシピを削除する
+                        <% end %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+
+              <%= turbo_frame_tag dom_id(recipe) do %>
+                <div class = "columns">
+                  <%# 更新日、更新時間を表示 %>
+                  <div class = "column">
+                    <time> <%= recipe.updated_at.strftime("%Y-%m-%d %H:%M")%> </time> 更新
+                  </div>
+         
+
+                  <div class = "column">
+                    <%# ユーザーがサインインしていた場合 %>
+                    <% if user_signed_in? %>
+                    <%# ユーザーがレシピをいいね済みだった場合%>
+                      <% if current_user.already_favorited?(recipe) %>
+                       <%# いいねのdeleat アクションを表示 %>
+                        <%= link_to  recipe_favorites_path(recipe), data: { turbo_method: :delete } do %>
+                          <i class="fas fa-heart"></i>
+                          <%= recipe.favorites.count %>いいね
+                        <% end %>
+                      <%# ユーザーがレシピをいいねしていない場合%>
+                      <% else %>
+                        <%# いいねのcreateアクションを表示 %>
+                        <%= link_to  recipe_favorites_path(recipe), data: { turbo_method: :post } do %>
+                          <i class="far fa-heart"></i>
+                          <%= recipe.favorites.count %>いいね
+                        <% end %>
+                      <% end %>
+                    <%# ユーザーがサインインしていない場合(current_userのバグ対策) %>
+                    <% else %>
+                      <%= link_to  recipe_favorites_path(recipe), data: { turbo_method: :delete, turbo_confirm: 'いいねにはログインが必要です。' } do %>
+                        <i class="far fa-heart"></i>
+                        <%= recipe.favorites.count %>いいね
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+         
+       
+            </div>
+
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+
+
+
+

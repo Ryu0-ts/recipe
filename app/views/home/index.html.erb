@@ -1,0 +1,55 @@
+<section class = "section">
+ <div class="container">
+<%# ログイン、新規登録ボタン　%>
+  <article class = "media">
+    <div class = "media-content">
+      <div class = "content has-text-centered">
+        <strong class = "is-size-1" style="font-family: cursive;">
+          Recipe
+        </strong>
+      <div>
+      <div class = "columns is-centered">
+        <div class= "column is-5">
+          <br><%= link_to "ログイン", new_user_session_path, class: "button is-warning is-fullwidth" %>  
+          <br><%= link_to "新規登録", new_user_registration_path, class: "button is-warning is-fullwidth" %> 
+        </div>
+      </div>
+    </div>
+  </article> <br>
+
+<%# 画像とランキング表示　%>
+ <div class ="card">
+  <div class="tile is-ancestor">
+      <div class = "tile is-parent is-9">
+       <div class = "tile is-child notificationy">
+        <figure>
+          <div class = "main-image">
+          </div>
+        </figure>
+       </div>
+      </div>
+
+  <%# ランキング表示　%>
+      <div class = "tile is-parent">
+        <div class = " tile is-child notification">
+          <div class = "card-header-title title has-background-warning-light" >
+            <nobr>いいねランキング </nobr>
+          </div>
+          <% @ranks.each.with_index(1) do |recipe, i| %>
+          <ul class = "card-content">
+            <li>
+              <i class="fas fa-crown"></i> 
+              第<%= i %>位 　　　<%= recipe.favorites.count %>いいね 
+            </li>
+            <li>
+              <%= link_to recipe.title,recipe_path(recipe)%> 
+            </li>
+          </ul>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+ </div>
+</section>

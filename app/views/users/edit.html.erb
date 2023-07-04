@@ -1,0 +1,59 @@
+<%# バナー表示 %>
+<section class="hero is-success">
+ <div class="hero-body">
+  <div class="container">
+   <h1 class="title">
+    ユーザ編集
+   </h1>
+  </div>
+ </div>
+</section>
+
+<%# 保存失敗時のエラー表示 %>
+<% if @user.errors.any? %>
+  <div class ="notification is-danger">
+   <h2> <%= pluralize(@user.errors.count,"error") %> </h2>
+   <ul> 
+    <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+   </ul>
+  </div>
+<% end %>
+
+
+<section class="section">
+  <div class="cantainer">
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <%# フォーム画面表示 %>
+        <%= form_for @user do |f| %>
+          <%# ユーザー名入力フィールド表示 %>
+          <div class="field">
+            <%= f.label :username, "ユーザー名", class: "label" %>
+            <%= f.text_field :username, class: "input" %>
+          </div>
+          <%# メールアドレス入力フィールド表示 %>
+          <div class="field">
+            <%= f.label :email, "メールアドレス", class: "label" %>
+            <%= f.text_field :email,class: "input" %>
+          </div>
+          <%# プロフィール入力フィールド表示 %>
+          <div class="field">
+            <%= f.label :profile, "プロフィール", class: "label"%>
+            <%= f.text_field :profile, class: "textarea" %>  
+          </div>
+          <%#　プロフィール画像入力フィールド表示 %>
+          <div class="field">
+            <%= f.label :profile_image, "プロフィール画像", class: "label" %>
+            <%= f.file_field :profile_image, class: "input" %>
+          </div>
+          <%# 更新ボタン表示 %>
+          <%= f.submit "更新",class: "button is-success"%>
+
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,98 @@
+<%# バナー表示 %>
+<section class = "hero is-success">
+ <div class = "hero-body"> 
+  <div class = "container">
+   <h1 class = "title">
+    レシピ一覧
+   </h1>
+  </div>
+ </div>
+</section>
+
+
+<section class = "section">
+  <div class = "container">
+    <div class = "columns is-multiline">
+      <% @recipes.each do |recipe| %>
+        <div class = "column is-4">
+          <div class = "card">
+
+            <%# 料理画像表示%>
+            <div class = "card-image">
+              <figure class = "image is-4by3">
+                <%=link_to recipe_path(recipe) do %>
+                  <%= attachment_image_tag recipe, :image %>
+                <% end %>
+              </figure>
+            </div>
+
+            <div class = "card-content">
+              <%#プロフィール画像と料理名表示%>
+              <div class = "media">
+                <%# プロフィール画像表示%>
+                <div class="media-left">
+                  <figure class="image is-48x48">
+                    <%= link_to user_path(recipe.user) do %>
+                      <%= attachment_image_tag recipe.user, :profile_image, fallback: "no-image.png", class: "profile_image" %>
+                    <% end %>
+                  </figure>
+                </div>
+                <%# 料理名表示表示%>
+                <div class ="media-content">
+                  <div class = "title" ><%= link_to recipe.title, recipe_path(recipe) %> </div>
+                </div>
+              </div>
+
+
+              <%= turbo_frame_tag dom_id(recipe) do %>
+
+                <div class = "columns" >
+                  <%#更新時間表示%>
+                  <div class ="column" >
+                    <time> <%= recipe.updated_at.strftime("%Y-%m-%d %H:%M") %> </time> 更新 
+                  </div>
+
+                  <%#いいねの表示%>
+                  <div class="column" >
+                    <%#ユーザーがサインインしている時 %>
+                    <% if user_signed_in? %>
+
+                      <%#ユーザーがいいね済みの時 %>
+                      <% if current_user.already_favorited?(recipe) %>
+                        <%= link_to  recipe_favorites_path(recipe), data: { turbo_method: :delete }  do %>
+                          <i class="fas fa-heart"></i>
+                          <%= recipe.favorites.count %>いいね
+                        <% end %>
+
+                        <%#ユーザーがいいねをしていない時 %>
+                      <% else %>
+                        <%= link_to  recipe_favorites_path(recipe), data: { turbo_method: :post } do %>
+                          <i class="far fa-heart"></i>
+                          <%= recipe.favorites.count %>いいね
+                        <% end %>
+                      <% end %>
+                    <%# ユーザーがサインインしていない時%>
+                    <% else %>
+                      <%= link_to  recipe_favorites_path(recipe), data: { turbo_method: :delete, turbo_confirm: 'いいねにはログインが必要です。' } do %>
+                        <i class="far fa-heart"></i>
+                        <%= recipe.favorites.count %>いいね
+                      <% end %>
+                    <% end %>
+                  
+                  </div>
+                </div> 
+              <% end %>
+
+
+            </div>
+
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%# ページネーション表示 %>
+    <%= paginate (@recipes) %>
+  </div>
+</section>
+
+
