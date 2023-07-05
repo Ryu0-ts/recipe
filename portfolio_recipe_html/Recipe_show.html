@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!-- saved from url=(0032)http://localhost:3000/recipes/26 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">.turbo-progress-bar {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #0076ff;
+  z-index: 2147483647;
+  transition:
+    width 300ms ease-out,
+    opacity 150ms 150ms ease-in;
+  transform: translate3d(0, 0, 0);
+}
+</style>
+    <title>Recipe</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="csrf-param" content="authenticity_token">
+
+    
+
+    <link rel="stylesheet" href="./Recipe_show_files/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous">
+    <link rel="stylesheet" href="./Recipe_show_files/application-da1a750d0de66c9dda3bc49d6246672edc78de4f297bfbd542590f8f3170bad2.css" media="all" data-turbolinks-track="reload">
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-682dd11c18127e6d20f578c48361f71f1ce357b2f87a0ef474c5147eb18b7254.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-d03cf1dff41d6c5698ec2c5d6a501615a7a33754dbeef8d1edd31c928d17c652.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-1fc59770fb1654500044afd3f5f6d7d00800e5be36746d55b94a2963a7a228aa.js",
+    "controllers/application": "/assets/controllers/application-368d98631bccbf2349e0d4f8269afb3fe9625118341966de054759d96ea86c7e.js",
+    "controllers/hello_controller": "/assets/controllers/hello_controller-549135e8e7c683a538c3d6d517339ba470fcfb79d62f738a0a089ba41851a554.js",
+    "controllers": "/assets/controllers/index-2db729dddcc5b979110e98de4b6720f83f91a123172e87281d5a58410fc43806.js"
+  }
+}</script>
+<link rel="modulepreload" href="http://localhost:3000/assets/application-682dd11c18127e6d20f578c48361f71f1ce357b2f87a0ef474c5147eb18b7254.js">
+<link rel="modulepreload" href="http://localhost:3000/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js">
+<link rel="modulepreload" href="http://localhost:3000/assets/stimulus.min-d03cf1dff41d6c5698ec2c5d6a501615a7a33754dbeef8d1edd31c928d17c652.js">
+<link rel="modulepreload" href="http://localhost:3000/assets/stimulus-loading-1fc59770fb1654500044afd3f5f6d7d00800e5be36746d55b94a2963a7a228aa.js">
+<script src="./Recipe_show_files/es-module-shims.min-4ca9b3dd5e434131e3bb4b0c1d7dff3bfd4035672a5086deec6f73979a49be73.js" async="async" data-turbo-track="reload"></script>
+<script type="module">import "application"</script>    
+  <meta name="csrf-token" content="3S5pTuuYKXum_AR3zpWx_iCl7TO5PU3KprLQWju11frlskf7VxmEZKY-YCyzPAKT4NSkuYqVu3kd7im5wV7owQ"></head>
+
+  <body>
+    
+
+
+
+    <nav class="navbar is-warning">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="http://localhost:3000/">
+          <h1 class="title is-4" style="font-family: cursive;">Recipe</h1>
+</a>        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+   
+        <div id="navbarExampleTransparentExample" class="navbar-menu">
+         <div class="navbar-item">
+          <a class="navbar-item button is-warning is-light" href="http://localhost:3000/recipes">レシピ一覧</a>
+        </div>
+        <div class="navbar-item">
+         <a class="navbar-item button is-warning is-light" href="http://localhost:3000/recipes/new">新規投稿</a>
+        </div>
+        <div class="navbar-end">
+         <div class="navbar-item">
+          <div class="field is-grouped">
+           <p class="control">
+            <a class="button is-warning is-light" href="http://localhost:3000/users">レシピグラマー一覧</a>
+           </p>           
+           <p class="control">
+            <a class="button is-warning is-light" href="http://localhost:3000/users/1">マイページ</a>
+           </p>
+           <p class="control">
+            <a class="button is-warning is-light" rel="nofollow" data-method="delete" href="http://localhost:3000/users/sign_out">ログアウト</a>
+           </p>
+         </div>
+        </div>
+       </div>
+      </div>
+   </nav>
+   <section class="hero is-success">
+ <div class="hero-body">
+  <div class="container">
+   <h1 class="title">
+    レシピ詳細
+   </h1>
+  </div>
+ </div>
+</section>  
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+
+      <div class="column is-7">
+        <div class="card">
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <img class="attachment recipe image" src="./Recipe_show_files/image">
+            </figure>
+          </div>
+
+          <div class="card-content">
+            <div class="media">
+              <div class="media-content">
+                <p class="title is-4">カレーライス</p>
+              </div>
+            </div>
+
+            <div class="content">
+
+              <table class="table is-narrow">
+                <tbody><tr>
+                  <th>レシピ</th>
+                </tr>
+                <tr>
+                 <td><p>① にんじん、じゃがいも、たまねぎを１口サイズに切ります
+<br>② 鍋で牛肉を中火で焼き、焼き目がつけば①を鍋に入れます
+<br>③ 水を１L入れ、15分中火で煮込みます
+<br>④ カレールーを規定数入れ5分さらに煮込みます
+<br>⑤ ご飯の上に④をかけて完成</p></td>
+                </tr>
+              </tbody></table>
+                  <a class="button is-success" href="http://localhost:3000/recipes/26/edit">編集</a>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+
+      <div class="column is-4">
+        <article class="panel is-link">
+          <p class="panel-heading">
+            ryu
+           </p>
+          <div class="panel-block">
+            <p class="control">
+              元気です
+            </p>
+          </div>
+          <a class="panel-block" href="http://localhost:3000/users/1">
+            <span class="panel-icon">
+              <i class="fas fa-user" aria-hidden="true"></i>
+            </span>
+            ryuさんのページへ
+</a>        </article>
+
+        <div class="content">
+          <table class="table is-narrow">
+            <tbody><tr>
+              <th>材料</th>
+            </tr>
+            <tr>
+              <td>
+                <p>牛肉
+<br>にんじん
+<br>じゃがいも
+<br>玉ねぎ
+<br>水
+<br>カレールー
+<br>ご飯</p>
+              </td>
+            </tr>
+          </tbody></table>   
+        </div>
+    
+      </div>
+
+    </div>    
+  </div>
+</section>
+
+
+
+
+
+
+
+  
+
+<div id="UMS_TOOLTIP" style="position: absolute; cursor: pointer; z-index: 2147483647; background: transparent; top: -100000px; left: -100000px;"></div></body><umsdataelement id="UMSSendDataEventElement"></umsdataelement><div id="tmtoolbar_manual_rating_injected" style="display: none;">init</div></html>

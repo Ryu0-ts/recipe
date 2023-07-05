@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">.turbo-progress-bar {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #0076ff;
+  z-index: 2147483647;
+  transition:
+    width 300ms ease-out,
+    opacity 150ms 150ms ease-in;
+  transform: translate3d(0, 0, 0);
+}
+</style>
+    <title>Recipe</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="csrf-param" content="authenticity_token">
+
+    
+
+    <link rel="stylesheet" href="./Home_files/all.min.css" integrity="sha256-UzFD2WYH2U1dQpKDjjZK72VtPeWP50NoJjd26rnAdUI=" crossorigin="anonymous">
+    <link rel="stylesheet" href="./Home_files/application-da1a750d0de66c9dda3bc49d6246672edc78de4f297bfbd542590f8f3170bad2.css" media="all" data-turbolinks-track="reload">
+    <script type="importmap" data-turbo-track="reload">{
+  "imports": {
+    "application": "/assets/application-682dd11c18127e6d20f578c48361f71f1ce357b2f87a0ef474c5147eb18b7254.js",
+    "@hotwired/turbo-rails": "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js",
+    "@hotwired/stimulus": "/assets/stimulus.min-d03cf1dff41d6c5698ec2c5d6a501615a7a33754dbeef8d1edd31c928d17c652.js",
+    "@hotwired/stimulus-loading": "/assets/stimulus-loading-1fc59770fb1654500044afd3f5f6d7d00800e5be36746d55b94a2963a7a228aa.js",
+    "controllers/application": "/assets/controllers/application-368d98631bccbf2349e0d4f8269afb3fe9625118341966de054759d96ea86c7e.js",
+    "controllers/hello_controller": "/assets/controllers/hello_controller-549135e8e7c683a538c3d6d517339ba470fcfb79d62f738a0a089ba41851a554.js",
+    "controllers": "/assets/controllers/index-2db729dddcc5b979110e98de4b6720f83f91a123172e87281d5a58410fc43806.js"
+  }
+}</script>
+<link rel="modulepreload" href="http://localhost:3000/assets/application-682dd11c18127e6d20f578c48361f71f1ce357b2f87a0ef474c5147eb18b7254.js">
+<link rel="modulepreload" href="http://localhost:3000/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js">
+<link rel="modulepreload" href="http://localhost:3000/assets/stimulus.min-d03cf1dff41d6c5698ec2c5d6a501615a7a33754dbeef8d1edd31c928d17c652.js">
+<link rel="modulepreload" href="http://localhost:3000/assets/stimulus-loading-1fc59770fb1654500044afd3f5f6d7d00800e5be36746d55b94a2963a7a228aa.js">
+<script src="./Home_files/es-module-shims.min-4ca9b3dd5e434131e3bb4b0c1d7dff3bfd4035672a5086deec6f73979a49be73.js" async="async" data-turbo-track="reload"></script>
+<script type="module">import "application"</script>    
+  <meta name="csrf-token" content="Fj23xlnPv4dHg1eUYRL369Mpi9U7mDodB7VIl0GJkTcuoZlz5U4SmEdBM88cu0SGE1jCXwgwzK686bF0u2KsDA"></head>
+
+  <body>
+    
+
+
+
+    <nav class="navbar is-warning">
+      <div class="navbar-brand">
+        <a class="navbar-item" href="http://localhost:3000/">
+          <h1 class="title is-4" style="font-family: cursive;">Recipe</h1>
+</a>        <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+   
+        <div id="navbarExampleTransparentExample" class="navbar-menu">
+         <div class="navbar-item">
+          <a class="navbar-item button is-warning is-light" href="http://localhost:3000/recipes">レシピ一覧</a>
+        </div>
+        <div class="navbar-item">
+         <a class="navbar-item button is-warning is-light" href="http://localhost:3000/recipes/new">新規投稿</a>
+        </div>
+        <div class="navbar-end">
+         <div class="navbar-item">
+          <div class="field is-grouped">
+           <p class="control">
+            <a class="button is-warning is-light" href="http://localhost:3000/users">レシピグラマー一覧</a>
+           </p>           
+           <p class="control">
+            <a class="button is-warning is-light" href="http://localhost:3000/users/1">マイページ</a>
+           </p>
+           <p class="control">
+            <a class="button is-warning is-light" rel="nofollow" data-method="delete" href="http://localhost:3000/users/sign_out">ログアウト</a>
+           </p>
+         </div>
+        </div>
+       </div>
+      </div>
+   </nav>
+   <section class="section">
+ <div class="container">
+  <article class="media">
+    <div class="media-content">
+      <div class="content has-text-centered">
+        <strong class="is-size-1" style="font-family: cursive;">
+          Recipe
+        </strong>
+      <div>
+      <div class="columns is-centered">
+        <div class="column is-5">
+          <br><a class="button is-warning is-fullwidth" href="http://localhost:3000/users/sign_in">ログイン</a>  
+          <br><a class="button is-warning is-fullwidth" href="http://localhost:3000/users/sign_up">新規登録</a> 
+        </div>
+      </div>
+    </div>
+  </div></div></article> <br>
+
+ <div class="card">
+  <div class="tile is-ancestor">
+      <div class="tile is-parent is-9">
+       <div class="tile is-child notificationy">
+        <figure>
+          <div class="main-image">
+          </div>
+        </figure>
+       </div>
+      </div>
+
+      <div class="tile is-parent">
+        <div class=" tile is-child notification">
+          <div class="card-header-title title has-background-warning-light">
+            <nobr>いいねランキング </nobr>
+          </div>
+          <ul class="card-content">
+            <li>
+              <i class="fas fa-crown"></i> 
+              第1位 　　　3いいね 
+            </li>
+            <li>
+              <a href="http://localhost:3000/recipes/14">ハンバーガー</a> 
+            </li>
+          </ul>
+          <ul class="card-content">
+            <li>
+              <i class="fas fa-crown"></i> 
+              第2位 　　　2いいね 
+            </li>
+            <li>
+              <a href="http://localhost:3000/recipes/16">炒飯</a> 
+            </li>
+          </ul>
+          <ul class="card-content">
+            <li>
+              <i class="fas fa-crown"></i> 
+              第3位 　　　1いいね 
+            </li>
+            <li>
+              <a href="http://localhost:3000/recipes/24">オムライス</a> 
+            </li>
+          </ul>
+          <ul class="card-content">
+            <li>
+              <i class="fas fa-crown"></i> 
+              第4位 　　　1いいね 
+            </li>
+            <li>
+              <a href="http://localhost:3000/recipes/17">うどん</a> 
+            </li>
+          </ul>
+          <ul class="card-content">
+            <li>
+              <i class="fas fa-crown"></i> 
+              第5位 　　　1いいね 
+            </li>
+            <li>
+              <a href="http://localhost:3000/recipes/12">ホットケーキ</a> 
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+ </div>
+</section>
+
+
+  
+
+<div id="UMS_TOOLTIP" style="position: absolute; cursor: pointer; z-index: 2147483647; background: transparent; top: -100000px; left: -100000px;"></div></body><umsdataelement id="UMSSendDataEventElement"></umsdataelement><div id="tmtoolbar_manual_rating_injected" style="display: none;">init</div></html>
