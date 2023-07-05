@@ -7,7 +7,8 @@
 ## 開発環境
    - Rails 7.0.4.3
    - ruby 3.2.2
-   - HTML,CSS,Ruby on Rails,bulma-rails
+   - HTML
+   - CSSフレームワーク bulma-rails
 
 ## 活用方法
 　   youtubeやクックパッドなど、作りたいレシピが複数のアプリに分かれているため、それらを一括管理するのに活躍しています。
