@@ -5,7 +5,7 @@
    ユーザーが投稿した料理のレシピを、共有するアプリケーションです。
 
 ## 開発環境
-   ・Rails
+   ・Rails    
    ・ruby
    ・HTML,CSS,Ruby on Rails,
 
