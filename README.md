@@ -11,6 +11,9 @@
    - CSSフレームワーク bulma-rails
    - 環境:ローカル
 
+## サイトイメージ
+  portfolio_recipe_html、portfolio_recipe_imgからご確認お願いします。
+
 ## 起動方法
  ターミナルでrecipeフォルダまで移動後、rails sでサーバーを起動し、localhost3000でhome画面に移動する。
 
